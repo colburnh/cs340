@@ -51,12 +51,23 @@ app.get('/otc', function(req, res){
     });
 });
 
-//add a pet page
-app.get('/addPet', function(req, res){
-    res.status(200).render('addPet', {
+//add pet page
+app.get('/pet', function(req, res){
+    res.status(200).render('pet', {
     });
 });
 
+//add client page
+app.get('/client', function(req, res){
+    res.status(200).render('client', {
+    });
+});
+
+//add health issue page
+app.get('/healthIssue', function(req, res){
+    res.status(200).render('healthIssue', {
+    });
+});
 
 /*
 app.use('/people_certs', require('./people_certs.js'));
