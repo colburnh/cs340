@@ -1,0 +1,192 @@
+<head>
+    <title>Pet Food Calculator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="views/layouts/main.css">
+</head>
+
+<!-- menu bar -->
+
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Pet Food Calculator</a>
+        <li class="nav-item"><a href="home">Home</a></li>
+        <!-- Commenting out hills and RC for now
+        <li class="nav-item"><a href="otc">Hill's</a></li>
+        <li class="nav-item"><a href="otc">Royal Canin</a></li>
+        -->
+        <li class="nav-item"><a href="otc">Over the Counter Products</a></li>
+        <li class="nav-item"><a href="pet">Pet</a></li>
+        <li class="nav-item"><a href="client">Client</a></li>
+        <li class="nav-item"><a href="healthIssue">View Health Issues</a></li>
+    </nav>
+</div>
+
+<body>
+
+<!-- jumbotron to provide info about page -->
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Find out how much your pet should eat</h1>
+    <p class="lead">This page will:</p>
+    <ul>
+    <li> List, add, and delete pets (which will update the clientPet tables) </li>
+    <li> Search pets by pet name </li>
+  </ul>
+  </div>
+</div>
+
+<!-- card w/ form embedded to collect pet/food info - informed by Bootstrap documentation -->
+
+{{!-- commenting this out for now
+
+
+<div class="card">
+    <div class="card-header bg-dark text-light text-center">
+      Your Pet's Details
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <img src="https://images.unsplash.com/photo-1594922099630-c5c0e8f2435e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=976&q=80" class="card-img" alt="Beach Puppy">
+      <cite>Photo by Jamie Street on Unsplash</cite>
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <p class="card-text">
+            <div class="container" id="pet-info">
+            <form method="POST">
+                <fieldset>
+                    <label>Name: <input type="text" name="petName"></label>
+                    <br />
+                    <!-- populate lists of food below after user selects species -->
+                    <label>Species: <input type="radio" name="species" value="cat">Cat </label>
+                    <label><input type="radio" name="species" value="dog">Dog </label>
+                    <br />
+                    <!-- weight will be multiplied by 25 to get calorie goal -->
+                    <label>Weight (lbs): <input type="number" name="weight"></label>
+                    <br />
+                    <label>Calorie Goal (in kcal): <input type="number" name="calorieGoal"></label>
+                    <br />
+                    
+                    <!-- populate select form with list of dry foods -->
+                    <!-- eventually parse json file with full list of foods -->
+                    <div class="form-group">
+                        <label for="dryFood">Select Dry Food:</label>
+                        <select multiple class="form-control" id="selectDry">
+                          <option>c/d chicken - dry</option>
+                          <option>c/d fish - dry</option>
+                          <option>k/d chicken - dry</option>
+                          <option>k/d fish - dry</option>
+                          <option>i/d - dry</option>
+                          <option>z/d - dry</option>
+                          <option>y/d - dry</option>
+                          <option>c/d stress - dry</option>
+                        </select>
+                    </div>
+                    <!-- populate select form with list of wet foods -->
+                    <!-- eventually parse json file with full list of foods -->
+                    <div class="form-group">
+                        <label for="wetFood">Select Wet Food:</label>
+                        <select multiple class="form-control" id="selectWet">
+                          <option>c/d chicken - wet</option>
+                          <option>c/d fish - wet</option>
+                          <option>k/d chicken - wet</option>
+                          <option>k/d fish - wet</option>
+                          <option>i/d - wet</option>
+                          <option>z/d - wet</option>
+                          <option>y/d - wet</option>
+                          <option>c/d stress - wet</option>
+                        </select>
+                    </div>
+                    <br />
+                    <input action="/hills" method="POST" type="submit" value="Submit" id="foodSubmit">
+                </fieldset>
+                </form>
+                </fieldset>
+            </form>
+            </div>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br />
+
+<div class="container-fluid">
+<!-- card w/ results - informed by Bootstrap documentation -->
+<!-- static and blank right now, but will be dynamic in the future -->
+<div class="card text-center" id="results">
+  <div class="card-header bg-dark text-light">
+      Results for Your Pet
+  </div>
+  <div class="row no-gutters">
+    <div class="col-md-12">
+        <blockquote class="blockquote mb-0">
+            <br />
+            <h5 class="font-weight-bold">100% dry: </h5>
+            <p>___ cups per day</p>
+            <h5 class="font-weight-bold">75% dry, 25% wet: </h5>
+            <p>___ cups per day</p>
+            <p>___ cans per day</p>
+            <h5 class="font-weight-bold">50% dry, 50% wet: </h5>
+            <p>___ cups per day</p>
+            <p>___ cans per day</p>
+            <h5 class="font-weight-bold">25% dry, 75% wet: </h5>
+            <p>___ cups per day</p>
+            <p>___ cans per day</p>
+            <h5 class="font-weight-bold">100% wet</h5>
+            <p>___ cans per day</p>
+            <br />
+            <footer class="blockquote-footer">* Weight-based calculations are estimates based on feeding 25 kcal per pound per day. 
+        Your pet's needs may be different. Consult with your veterinarian for a specific calorie goal.</footer>
+        </blockquote>
+        </p>
+      </div>
+    </div>
+  </div>
+
+<br />
+<!-- download blank results page -->
+<!-- eventually this will create a personalized pdf w/ above results -->
+<button type="button" class="btn btn-secondary align-center">
+  <a id="dwnld-btn" class="text-light" href="https:/colburnh.github.io/results.pdf" target="_blank" download>Download Results</a>
+</button>
+
+<br />
+<br />
+
+<div class="container-fluid">
+
+  <div class="card text-center" id="results">
+    <div class="card-header bg-dark text-light">
+        Additional Information
+    </div>
+    <div class="row no-gutters">
+      <div class="col-md-12">
+
+<!-- unordered list of links -->
+<h3>For more information, visit the Hill's website:</h3>
+<ul style="list-style-type: none;">
+    <li>
+        <a href="https://www.hillspet.com/products/dog-food#pd">
+        Prescription Dog Food</a>
+    </li>
+    <li>
+        <a href="https://www.hillspet.com/products/cat-food#pd">
+        Prescription Cat Food</a>
+    </li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+{{!-- <script src="../js/hills.js"></script>}}--}}
+
+}} --}}
+</body>
