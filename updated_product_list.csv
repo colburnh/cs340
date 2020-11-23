@@ -1,0 +1,280 @@
+﻿brandName,foodName,foodType,calPerUnit,forSpecies
+RC,Hydrolyzed Protein,wet,395,C
+RC,Hydrolyzed Protein,dry,331,C
+RC,Hydrolyzed Protein ModCal,dry,306,C
+RC,Mobility Support JS,dry,324,C
+RC,Weight Control Small Dog,dry,283,C
+RC,Satiety + Hydrolyzed Protein,dry,208,C
+RC,Mature Consult Small Dog,dry,329,C
+RC,Mature Consult,dry,314,C
+RC,Early Cardiac,dry,309,C
+RC,Dental Small Dog,dry,330,C
+RC,Gastrointestinal Low Fat,dry,248,C
+RC,Urinary SO + Satiety,dry,243,C
+RC,Urinary SO Small Dog,dry,358,C
+RC,Urinary SO Aging 7+,wet,157,C
+RC,Urinary UC,dry,339,C
+RC,Urinary SO,dry,333,C
+RC,Urinary SO ModCal,dry,272,C
+RC,Hepatic Loaf,wet,554,C
+RC,Weight Control,dry,274,C
+RC,Weight Control in Gel,wet,334,C
+RC,Gastrointestinal Loaf,wet,415,C
+RC,Weight Control Large Dog,dry,267,C
+RC,Dental,dry,315,C
+RC,Gastrointestinal ModCal,dry,315,C
+RC,Renal Support + Hydrolyzed Protein,dry,385,C
+RC,Glycobalance Loaf,wet,286,C
+RC,Glycobalance,dry,307,C
+RC,Renal Support A,dry,352,C
+RC,Renal Support E Loaf,wet,601,C
+RC,Renal Support S,dry,365,C
+RC,Urinary SO ModCal Thin Slices,wet,282,C
+RC,Hepatic,dry,323,C
+RC,Gastrointestinal Low Fat Loaf,wet,350,C
+RC,Gastrointestinal,dry,396,C
+RC,Gastrointestinal Puppy,dry,428,C
+RC,Satiety Support Loaf,wet,225,C
+RC,Mature Consult in Gel,wet,344,C
+RC,Gastrointestinal High Fiber,dry,290,C
+RC,Satiety Support Small Dog,dry,228,C
+RC,Recovery,wet,163,C
+RC,Urinary SO Thin Slices,wet,318,C
+RC,Mobility Support JS Large Breed,dry,307,C
+RC,Calm,dry,355,C
+RC,Selected Protein PR,wet,425,C
+RC,Selected Protein PD,wet,441,C
+RC,Selected Protein PW ModCal,dry,260,C
+RC,Hydrolyzed Protein PS,dry,302,C
+RC,Vegetarian,wet,347,C
+RC,Selected Protein PW,dry,315,C
+RC,Skin Support,dry,312,C
+RC,Selected Protein PW Large Breed,dry,336,C
+RC,Selected Protein PV,wet,399,C
+RC,Hydrolyzed Protein Small Dog,dry,373,C
+RC,Selected Protein PW,wet,413,C
+RC,Selected Protein KO,dry,335,C
+RC,Renal Support D Morsels,wet,352,C
+RC,Renal Support F,dry,356,C
+RC,Renal Support T Loaf,wet,596,C
+RC,Urinary SO Aging 7+,dry,340,C
+RC,Urinary SO + Satiety Loaf,wet,219,C
+RC,Selected Protein PV,dry,286,C
+RC,Selected Protein PR,dry,287,C
+RC,Selected Protein PD,dry,304,C
+RC,Ultamino,dry,316,C
+RC,Vegetarian,dry,291,C
+RC,Urinary SO Loaf,wet,478,C
+RC,Urinary SO + Hydrolyzed Protein,dry,327,C
+RC,Satiety Support,dry,214,C
+H,i/d Stress,wet,126,C
+H,d/d Salmon,wet,386,C
+H,d/d Duck,wet,356,C
+H,h/d,dry,410,C
+H,i/d Low Fat Chicken,wet,289,C
+H,Metabolic Beef,wet,248,C
+H,Metabolic + Mobility Tuna,wet,218,C
+H,s/d,wet,468,C
+H,k/d + Mobility Chicken,wet,352,C
+H,k/d Chicken,wet,358,C
+H,c/d Chicken,wet,117,C
+H,i/d Chicken,wet,117,C
+H,w/d Chicken,wet,89,C
+H,w/d Chicken,wet,201,C
+H,Metabolic Chicken,wet,248,C
+H,k/d Beef,wet,145,C
+H,k/d Beef,wet,330,C
+H,i/d,dry,369,C
+H,Gastrointestinal Biome,dry,343,C
+H,d/d Venison,dry,371,C
+H,a/d,wet,183,C
+H,Metabolic + Urinary,dry,279,C
+H,j/d Small Bites,dry,353,C
+H,i/d Low Fat,dry,333,C
+H,k/d,wet,422,C
+H,w/d Multibenefit,dry,255,C
+H,z/d,wet,148,C
+H,z/d,wet,352,C
+H,u/d,dry,398,C
+H,r/d,dry,245,C
+H,l/d,wet,548,C
+H,Derm Defense,dry,344,C
+H,j/d,wet,477,C
+H,r/d,wet,299,C
+H,k/d Lamb,wet,421,C
+H,i/d,wet,376,C
+H,g/d,dry,361,C
+H,b/d,dry,361,C
+H,Metabolic,wet,322,C
+H,c/d Chicken,wet,463,C
+H,t/d,dry,248,C
+H,l/d,dry,402,C
+H,t/d Small Bites,dry,248,C
+H,Metabolic + Mobility,dry,291,C
+H,Metabolic Lamb,dry,256,C
+H,c/d Multicare,dry,375,C
+H,i/d Low Fat,wet,349,C
+H,k/d Chicken,dry,402,C
+H,i/d Small Bites,dry,379,C
+H,z/d,dry,354,C
+H,k/d + Mobility,dry,496,C
+H,i/d Stress,dry,329,C
+H,z/d Small Bites,dry,374,C
+H,d/d Duck,dry,371,C
+H,d/d Salmon,dry,360,C
+H,w/d Multibenefit,wet,307,C
+H,k/d Lamb,dry,459,C
+H,h/d,wet,482,C
+H,Metabolic,dry,260,C
+H,i/d Sensitive,dry,380,C
+H,g/d,wet,388,C
+H,j/d,dry,353,C
+H,Derm Defense Chicken,wet,299,C
+H,u/d,wet,499,C
+RC,Ultamino,dry,335,F
+RC,Selected Protein PV,wet,146,F
+RC,Urinary + Calm Morsels,wet,60,F
+RC,Glycobalance,dry,320,F
+RC,Gastrointestinal ModCal Thin Slices,wet,60,F
+RC,Satiety + Hydrolyzed Protein,dry,221,F
+RC,Glycobalance Thin Slices,wet,55,F
+RC,Urinary SO,dry,315,F
+RC,Selected Protein PD,wet,189,F
+RC,Selected Protein PR,wet,166,F
+RC,Urinary SO + Satiety + Calm,wet,100,F
+RC,Calm,dry,330,F
+RC,Senior Consult,dry,299,F
+RC,Weight Contol,dry,244,F
+RC,Urinary SO + Calm,dry,322,F
+RC,Renal Support S,dry,398,F
+RC,Urinary + Satiety,dry,238,F
+RC,Calorie Control High Fiber,wet,126,F
+RC,Urinary SO Morsels,wet,65,F
+RC,Gastrointestinal Fiber Response,dry,362,F
+RC,Calorie Control,dry,244,F
+RC,Senior Consult,wet,150,F
+RC,Gastrointestinal,dry,440,F
+RC,Urinary SO ModCal Morsels,wet,56,F
+RC,Satiety Support Loaf,wet,94,F
+RC,Urinary SO Aging + Calm,dry,308,F
+RC,Renal Support T,wet,82,F
+RC,Satiety Support Thin Slices,wet,51,F
+RC,Calorie Control,wet,90,F
+RC,Renal Support + Hydrolyzed Protein,dry,402,F
+RC,Calorie Control Morsels,wet,49,F
+RC,Recovery,wet,163,F
+RC,Urinary SO Loaf,wet,135,F
+RC,Dental,dry,294,F
+RC,Renal Support A,dry,345,F
+RC,Renal Support E Loaf,wet,171,F
+RC,Gastrointestinal,wet,180,F
+RC,Renal Support D Morsels,wet,97,F
+RC,Gastrointestinal ModCal,dry,334,F
+RC,Renal Support E,dry,373,F
+RC,Urinary SO Aging + Calm,wet,132,F
+RC,Weight Control,wet,125,F
+RC,Urinary SO + Hydrolyzed Protein,dry,334,F
+RC,Urinary SO ModCal,dry,275,F
+RC,Satiety Support,dry,234,F
+RC,Hydrolyzed Protein,dry,328,F
+RC,Selected Protein PD,dry,329,F
+RC,Selected Protein PV,dry,324,F
+RC,Selected Protein PR,dry,332,F
+RC,Ultamino,dry,335,F
+RC,Selected Protein PV,wet,146,F
+RC,Urinary + Calm Morsels,wet,60,F
+RC,Glycobalance,dry,320,F
+RC,Gastrointestinal ModCal Thin Slices,wet,60,F
+RC,Satiety + Hydrolyzed Protein,dry,221,F
+RC,Glycobalance Thin Slices,wet,55,F
+RC,Urinary SO,dry,315,F
+RC,Selected Protein PD,wet,189,F
+RC,Selected Protein PR,wet,166,F
+RC,Urinary SO + Satiety + Calm,wet,100,F
+RC,Calm,dry,330,F
+RC,Senior Consult,dry,299,F
+RC,Weight Contol,dry,244,F
+RC,Urinary SO + Calm,dry,322,F
+RC,Renal Support S,dry,398,F
+RC,Urinary + Satiety,dry,238,F
+RC,Calorie Control High Fiber,wet,126,F
+RC,Urinary SO Morsels,wet,65,F
+RC,Gastrointestinal Fiber Response,dry,362,F
+RC,Calorie Control,dry,244,F
+RC,Senior Consult,wet,150,F
+RC,Gastrointestinal,dry,440,F
+RC,Urinary SO ModCal Morsels,wet,56,F
+RC,Satiety Support Loaf,wet,94,F
+RC,Urinary SO Aging + Calm,dry,308,F
+RC,Renal Support T,wet,82,F
+RC,Satiety Support Thin Slices,wet,51,F
+RC,Calorie Control,wet,90,F
+RC,Renal Support + Hydrolyzed Protein,dry,402,F
+RC,Calorie Control Morsels,wet,49,F
+RC,Recovery,wet,163,F
+RC,Urinary SO Loaf,wet,135,F
+RC,Dental,dry,294,F
+RC,Renal Support A,dry,345,F
+RC,Renal Support E Loaf,wet,171,F
+RC,Gastrointestinal,wet,180,F
+RC,Renal Support D Morsels,wet,97,F
+RC,Gastrointestinal ModCal,dry,334,F
+RC,Renal Support E,dry,373,F
+RC,Urinary SO Aging + Calm,wet,132,F
+RC,Weight Control,wet,125,F
+RC,Urinary SO + Hydrolyzed Protein,dry,334,F
+RC,Urinary SO ModCal,dry,275,F
+RC,Satiety Support,dry,234,F
+RC,Hydrolyzed Protein,dry,328,F
+RC,Selected Protein PD,dry,329,F
+RC,Selected Protein PV,dry,324,F
+RC,Selected Protein PR,dry,332,F
+H,y/d,wet,193,F
+H,r/d,dry,265,F
+H,c/d Multicare + Metabolic Tune,wet,61,F
+H,Metabolic Tuna,wet,63,F
+H,i/d,wet,167,F
+H,Metabolic + Urinary Tuna,wet,60,F
+H,k/d + Mobility Chicken,wet,68,F
+H,k/d Chicken,wet,70,F
+H,c/d Chicken,wet,69,F
+H,c/d Stress Chicken,wet,71,F
+H,Metabolic Chicken,wet,64,F
+H,k/d Early Chicken,wet,79,F
+H,k/d Tuna,wet,77,F
+H,c/d Tuna,wet,67,F
+H,Gastrointestinal Biome Chicken,wet,67,F
+H,s/d,wet,202,F
+H,i/d Chicken,wet,78,F
+H,y/d,dry,517,F
+H,a/d,wet,183,F
+H,c/d Multicare Tuna,dry,382,F
+H,z/d,wet,174,F
+H,m/d GlucoSupport Liver,wet,173,F
+H,d/d Duck,wet,189,F
+H,m/d GlucoSupport Chicken,wet,78,F
+H,k/d Early Chicken,dry,536,F
+H,Gastrointestinal Biome Chicken,dry,427,F
+H,Metabolic + Urinary Stress,dry,289,F
+H,r/d,wet,122,F
+H,w/d Multibenefit,wet,128,F
+H,d/d Venison,dry,491,F
+H,i/d,dry,508,F
+H,k/d Tuna,wet,170,F
+H,k/d Tuna,dry,444,F
+H,m/d GlucoSupport Chicken,dry,463,F
+H,r/d,dry,269,F
+H,z/d,dry,408,F
+H,Metabolic,wet,136,F
+H,Metabolic,dry,297,F
+H,k/d Chicken,dry,541,F
+H,c/d Multicare Stress,dry,351,F
+H,c/d Multicare Chicken,dry,349,F
+H,w/d Multibenefit,dry,278,F
+H,k/d + Mobility,dry,483,F
+H,c/d Tuna,wet,169,F
+H,c/d Multicare Chicken,wet,174,F
+H,Metabolic + Urinary,,289,F
+H,s/d,dry,523,F
+H,k/d Chicken,wet,177,F
+H,d/d Duck,dry,468,F
