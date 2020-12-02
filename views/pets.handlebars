@@ -12,6 +12,26 @@
   </div>
 </div>
 
+<h3>Add Pet:</h3>
+<form id="addPet" action="/pets" method="post">
+    Pet Name: <input type="text" name="petName"><br>
+    Species: <input type="text" name="species"><br>
+    Weight: <input type="text" name="weight"><br>
+    Caloric Goal: <input type="text" name="caloricGoal"><br>
+    Health Issue: <input type="text" name="healthIssue"><br>
+    Percent Canned: <input type="text" name="percentCanned"><br>
+    Percent Dry: <input type="text" name="percentDry"><br>
+    <input type="submit" value="Submit">
+ </form>
+<br/>
+
+<form id='searchPets' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search Pets by pet name:</label>
+    <input id='petNameString' type='text' name='petNameString' value=''>
+    <input type="button" value="Search" onclick="searchPetsByPetName()">
+</form>
+
 
 <h3>Current Pets:</h3>
 <table style="width:1000px">

@@ -27,6 +27,25 @@ module.exports = function(){
 
         }
     });
+    
+    
+    /* Adds a health issue, redirects to the pets page after adding */
+
+    router.post('/', function(req, res){
+        console.log(req.body)
+        var mysql = req.app.get('mysql');
+        var sql = "INSERT INTO healthIssues (healthIssue, species, recPercentCanned, recPercentDry) VALUES (?,?,?,?)";
+        var inserts = [req.body.healthIssue, req.body.species, req.body.recPercentCanned, req.body.recPercentDry];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            if(error){
+                console.log(JSON.stringify(error))
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.redirect('/healthIssues');
+            }
+        });
+    });
 
     
     return router;

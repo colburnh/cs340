@@ -26,7 +26,25 @@ module.exports = function(){
 
         }
     });
+    
+    
+    /* Adds a pet, redirects to the pets page after adding */
 
+    router.post('/', function(req, res){
+        console.log(req.body)
+        var mysql = req.app.get('mysql');
+        var sql = "INSERT INTO products (healthIssue, forSpecies, brandName, foodName, foodType, unit, calPerUnit) VALUES (?,?,?,?,?,?,?)";
+        var inserts = [req.body.healthIssue, req.body.forSpecies, req.body.brandName, req.body.foodName, req.body.foodType, req.body.unit, req.body.calPerUnit];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            if(error){
+                console.log(JSON.stringify(error))
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.redirect('/products');
+            }
+        });
+    });
     
     return router;
 }();

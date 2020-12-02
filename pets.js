@@ -26,6 +26,24 @@ module.exports = function(){
 
         }
     });
+    
+    /* Adds a pet, redirects to the pets page after adding */
+
+    router.post('/', function(req, res){
+        console.log(req.body)
+        var mysql = req.app.get('mysql');
+        var sql = "INSERT INTO pets (petname, species, weight, caloricGoal, healthIssue, percentCanned, percentDry) VALUES (?,?,?,?,?,?,?)";
+        var inserts = [req.body.petName, req.body.species, req.body.weight, req.body.caloricGoal, req.body.healthIssue, req.body.percentCanned, req.body.percentDry];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            if(error){
+                console.log(JSON.stringify(error))
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.redirect('/pets');
+            }
+        });
+    });
 
     
     return router;
