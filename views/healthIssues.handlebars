@@ -13,6 +13,61 @@
   </div>
 </div>
 
+
+<h3>Add Health Issues:</h3>
+<form id="addHealthIssue" action="/healthIssues" method="post">
+    Health Issue: <input type="text" name="healthIssue"><br>
+    Species: <input type="text" name="species"><br>
+    Recommended % Canned: <input type="text" name="recPercentCanned"><br>
+    Recommended % Dry: <input type="text" name="recPercentDry"><br>
+    <input type="submit" value="Submit">
+ </form>
+<br/>
+
+<form id='searchHealthIssues' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Search healthIssues that include:</label>
+    <input id='healthIssueString' type='text' name='healthIssueString' value=''>
+    <input type="button" value="Search" onclick="searchHealthIssues()">
+</form>
+
+<h3>Current Health Issues:</h3>
+<table style="width:700px">
+    <thead>
+        <tr style="border:1px solid black">
+            <th>Health Issue</th> 
+            <th>For Species</th> 
+            <th>Recommended % Canned</th> 
+            <th>Recommended % Dry</th> 
+        </tr>
+    </thead> 
+    <tbody>
+        {{#each healthIssues}} 
+        <tr style="border:1px solid black"> 
+            <td>{{healthIssue}}</td> 
+            <td>{{species}}</td> 
+            <td>{{recPercentCanned}}</td> 
+            <td>{{recPercentDry}}</td> 
+        </tr> 
+        {{/each}} 
+    </tbody> 
+</table> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- card w/ form embedded to collect pet/food info - informed by Bootstrap documentation -->
 
 {{!-- commenting this out for now
@@ -162,6 +217,4 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 {{!--<script src="../js/hills.js"></script>}} --}}
-
-}} --}}
 </body>

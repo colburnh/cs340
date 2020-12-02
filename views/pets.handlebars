@@ -4,18 +4,66 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4">Find out how much your pet should eat</h1>
-    <p class="lead">Enter your pet's details and select their Hills food</p>
+    <p class="lead">This page will:</p>
     <ul>
-    <li> List, add, and delete health issues (which will also update the petProduct table (FK)  </li>
-    <li> Update a health issue for a species</li>
-    <li> Search by health issue </li>
+    <li> List, add, and delete pets (which will update the clientPet tables) </li>
+    <li> Search pets by pet name </li>
   </ul>
   </div>
 </div>
 
+
+<h3>Current Pets:</h3>
+<table style="width:1000px">
+    <thead>
+        <tr style="border:1px solid black">
+            <th>Pet ID</th>
+            <th>Pet Name</th> 
+            <th>Species</th> 
+            <th>Weight</th>
+            <th>Caloric Goal</th>
+            <th>Health Issue</th>
+            <th>percentCanned</th>
+            <th>PercentDry</th>
+        </tr>
+    </thead> 
+    <tbody>
+        {{#each pets}} 
+        <tr style="border:1px solid black"> 
+            <td>{{petID}}</td>
+            <td>{{petName}}</td> 
+            <td>{{species}}</td> 
+            <td>{{weight}}</td>
+            <td>{{caloricGoal}}</td>
+            <td>{{healthIssue}}</td>
+            <td>{{percentCanned}}</td>
+            <td>{{percentDry}}</td>
+        </tr> 
+        {{/each}} 
+    </tbody> 
+</table> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- card w/ form embedded to collect pet/food info - informed by Bootstrap documentation -->
 
 {{!-- commenting this out for now
+
 
 <div class="card">
     <div class="card-header bg-dark text-light text-center">
@@ -161,7 +209,5 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-{{!--<script src="../js/hills.js"></script>}} --}}
-
-}} --}}
+{{!-- <script src="../js/hills.js"></script>}}--}}
 </body>

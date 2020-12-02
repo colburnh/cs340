@@ -51,6 +51,75 @@
       <img src="https://images.unsplash.com/photo-1594922099630-c5c0e8f2435e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=976&q=80" class="card-img" alt="Beach Puppy">
       <cite>Photo by Jamie Street on Unsplash</cite>
     </div>
+    
+    -->
+    
+    <label> Search pets by name:</label>
+    <input id= "pet_search_string" type="text" name="pet_search_string" value>
+    <input type="button" value="search">
+    
+    <h3>Current Pets:</h3>
+    
+    <table style="width:900px">
+        <thread>
+            <tr style="padding: 20px">
+                <th>Pet ID</th>
+                <th>Pet Name</th>
+                <th>Species</th>
+                <th>Weight</th>
+                <th>Caloric Goal</th>
+                <th>Health Issue</th>
+                <th>% Canned</th>
+                <th>% Dry</th>
+            </tr>
+        </thread>
+        <tbody>
+            <tr style="border:1px solid black">
+                <td>1</td>
+                <td>Sir.George</td>
+                <td>Dog</td>
+                <td>30.10</td>
+                <td>364</td>
+                <td>Overweight</td>
+                <td>0.20</td>
+                <td>0.80</td>
+                <td>
+                    <button>Delete</button>
+                </td>
+            <tr style="border:1px solid black">
+                <td>2</td>
+                <td>Momo</td>
+                <td>Dog</td>
+                <td>15.00</td>
+                <td>520</td>
+                <td>Underweight</td>
+                <td>0.50</td>
+                <td>0.50</td>
+                <td>
+                    <button>Delete</button>
+                </td>
+            </tr>
+            <tr style="border:1px solid black">
+                <td>2</td>
+                <td>Lucy</td>
+                <td>Cat</td>
+                <td>5.00</td>
+                <td>243</td>
+                <td>Underweight</td>
+                <td>0.70</td>
+                <td>0.30</td>
+                <td>
+                    <button>Delete</button>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+    
+    
+    <h3 style="margin-top: 50px">Add a Pet</h3>
+    
+    
     <div class="col-md-6">
       <div class="card-body">
         <p class="card-text">
@@ -59,15 +128,22 @@
                 <fieldset>
                     <label>Name: <input type="text" name="petName"></label>
                     <br />
-                    <!-- populate lists of food below after user selects species 
+                    <!-- populate lists of food below after user selects species -->
                     <label>Species: <input type="radio" name="species" value="cat">Cat </label>
                     <label><input type="radio" name="species" value="dog">Dog </label>
                     <br />
-                    <!-- weight will be multiplied by 25 to get calorie goal 
+                    <!-- weight will be multiplied by 25 to get calorie goal -->
                     <label>Weight (lbs): <input type="number" name="weight"></label>
                     <br />
                     <label>Calorie Goal (in kcal): <input type="number" name="calorieGoal"></label>
                     <br />
+                    <label>Health Issue: <input type="number" name="healthIssue"></label>
+                    <br />
+                    <label>Percent Canned: <input type="number" name="percentCanned"></label>
+                    <br />
+                    <label>Percent Dry: <input type="number" name="percentDry"></label>
+                    <br />
+                    <input action="/pets method="POST" type="submit" value="Submit" id="petSubmit">
                     
                     <!-- populate select form with list of dry foods -->
                     <!-- eventually parse json file with full list of foods 

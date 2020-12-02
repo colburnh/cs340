@@ -31,7 +31,7 @@
     <h1 class="display-4">Find out how much your pet should eat</h1>
     <p class="lead">This page will:</p>
     <ul>
-    <li> List, add, and delete clients (which will also update the clientPet tables  </li>
+    <li> List, add, and delete clients (which will also update the clientPet tables)  </li>
     <li> List the clientPet table (see what client owns what pets) </li>
     <li> Search by client name </li>
   </ul>
@@ -39,8 +39,6 @@
 </div>
 
 <!-- card w/ form embedded to collect pet/food info - informed by Bootstrap documentation --
-
-{{!-- commenting this out for now
 
 <div class="card">
     <div class="card-header bg-dark text-light text-center">
@@ -50,24 +48,110 @@
     <div class="col-md-6">
       <img src="https://images.unsplash.com/photo-1594922099630-c5c0e8f2435e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=976&q=80" class="card-img" alt="Beach Puppy">
       <cite>Photo by Jamie Street on Unsplash</cite>
+
+
     </div>
+-->
+
+<label> Search clients for first name starting with:</label>
+    <input id= "client_search_string" type="text" name="client_search_string" value>
+    <input type="button" value="search">
+
+
+<h3>Current Products:</h3>
+    
+    <table style="width:500px">
+        <thread>
+            <tr style="padding: 25px">
+                <th>Client ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+        </thread>
+        <tbody>
+            <tr style="border:1px solid black">
+                <td>1</td>
+                <td>John</td>
+                <td>Smith</td>
+                <td>
+                    <button>Delete</button>
+                </td>
+                <td>
+                    <button>Update</button>
+                </td>
+          </tr>
+            <tr style="border:1px solid black">
+                <td>2</td>
+                <td>Terry</td>
+                <td>Cruise</td>
+                <td>
+                    <button>Delete</button>
+                </td>
+                <td>
+                    <button>Update</button>
+                </td>
+            </tr>
+            <tr style="border:1px solid black">
+                <td>2</td>
+                <td>Jerry</td>
+                <td>Heinsburger</td>
+                <td>
+                    <button>Delete</button>
+                </td>
+                <td>
+                    <button>Update</button>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+    
+    <table style="width:100px">
+        <thread>
+            <tr style="padding: 10px">
+                <th>Client ID</th>
+                <th>Pet ID</th>
+            </tr>
+            
+            <tr style="border: 1px solid black">
+                <td>1</td>
+                <td>3</td>
+            </tr>
+            <tr style="border: 1px solid black">
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr style="border: 1px solid black">
+                <td>2</td>
+                <td>1</td>
+            </tr>
+            <tr style="border: 1px solid black">
+                <td>3</td>
+                <td>NULL</td>
+            </tr>
+        </thread>
+    </table>
+            
+    
+    
+    <h3 style="margin-top: 30px">Add a Client</h3>
+
+
+
     <div class="col-md-6">
       <div class="card-body">
         <p class="card-text">
             <div class="container" id="pet-info">
             <form method="POST">
                 <fieldset>
-                    <label>Name: <input type="text" name="petName"></label>
+                    <label>Name: <input type="text" name="clientName"></label>
                     <br />
-                    <!-- populate lists of food below after user selects species --
-                    <label>Species: <input type="radio" name="species" value="cat">Cat </label>
-                    <label><input type="radio" name="species" value="dog">Dog </label>
+                    <!-- weight will be multiplied by 25 to get calorie goal -->
+                    <label>First Name: <input type="text" name="fName"></label>
                     <br />
-                    <!-- weight will be multiplied by 25 to get calorie goal --
-                    <label>Weight (lbs): <input type="number" name="weight"></label>
+                    <label>LastName: <input type="text" name="lName"></label>
                     <br />
-                    <label>Calorie Goal (in kcal): <input type="number" name="calorieGoal"></label>
-                    <br />
+                    <input action="/clients method="POST" type="submit" value="Submit" id="clientSubmit">
                     
                     <!-- populate select form with list of dry foods -->
                     <!-- eventually parse json file with full list of foods --
