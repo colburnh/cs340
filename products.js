@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function getProducts(res, mysql, context, complete){
-        mysql.pool.query("SELECT products.healthIssue, products.forSpecies, products.brandName, products.foodName, products.foodType, products.unit, products.calPerUnit FROM products", function(error, results, fields){
+        mysql.pool.query("SELECT products.productID, products.healthIssue, products.forSpecies, products.brandName, products.foodName, products.foodType, products.unit, products.calPerUnit FROM products", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -16,6 +16,7 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
+        context.jsscripts = ["deleteProduct.js"];
         var mysql = req.app.get('mysql');
         getProducts(res, mysql, context, complete);
         function complete(){
@@ -45,6 +46,24 @@ module.exports = function(){
             }
         });
     });
+    
+    /* Route to delete a product, simply returns a 202 upon success. Ajax will handle this. */
+
+    router.delete('/:productID', function(req, res){
+        var mysql = req.app.get('mysql');
+        var sql = "DELETE FROM products WHERE productID = ?";
+        var inserts = [req.params.productID];
+        sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                console.log(error)
+                res.write(JSON.stringify(error));
+                res.status(400);
+                res.end();
+            }else{
+                res.status(202).end();
+            }
+        })
+    })
     
     return router;
 }();

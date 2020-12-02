@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function getHealthIssues(res, mysql, context, complete){
-        mysql.pool.query("SELECT healthIssues.healthIssue, healthIssues.species, healthIssues.recPercentCanned, healthIssues.recPercentDry FROM healthIssues", function(error, results, fields){
+        mysql.pool.query("SELECT healthIssues.healthIssueID, healthIssues.healthIssue, healthIssues.species, healthIssues.recPercentCanned, healthIssues.recPercentDry FROM healthIssues", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -16,7 +16,7 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        //context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
+        context.jsscripts = ["deleteHealthIssue.js"];
         var mysql = req.app.get('mysql');
         getHealthIssues(res, mysql, context, complete);
         function complete(){
@@ -46,6 +46,24 @@ module.exports = function(){
             }
         });
     });
+    
+    /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. */
+
+    router.delete('/:healthIssueID', function(req, res){
+        var mysql = req.app.get('mysql');
+        var sql = "DELETE FROM healthIssues WHERE healthIssueID = ?";
+        var inserts = [req.params.healthIssueID];
+        sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                console.log(error)
+                res.write(JSON.stringify(error));
+                res.status(400);
+                res.end();
+            }else{
+                res.status(202).end();
+            }
+        })
+    })
 
     
     return router;
