@@ -13,7 +13,7 @@ module.exports = function(){
         });
     }
     
-    /* Function for getting clientPet table. Currently not working.
+     //Function for getting clientPet table. Currently not working.
     function getClientPet(res, mysql, context, complete){
         mysql.pool.query("SELECT clientPet.clientID, clientPet.petID FROM clientPet", function(error, results, fields){
             if(error){
@@ -24,18 +24,17 @@ module.exports = function(){
             complete();
         });
     }
-    */
     
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteClient.js"];
+        context.jsscripts = ["deleteClient.js", "searchClients.js"];
         var mysql = req.app.get('mysql');
         getClients(res, mysql, context, complete);
-        //getClientPet(res, mysql, context, complete);
+        getClientPet(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 2){
                 res.render('clients', context);
             }
 
@@ -77,6 +76,37 @@ module.exports = function(){
             }
         })
     })
+    
+    function getClientsWithNameLike(req, res, mysql, context, complete) {
+      //sanitize the input as well as include the % character
+       var query = "SELECT clients.clientID, clients.fname, clients.lname FROM clients WHERE clients.fname LIKE " + mysql.pool.escape(req.params.s + '%');
+      console.log(query)
+
+      mysql.pool.query(query, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.clients = results;
+            complete();
+        });
+    }
+    
+    
+    /*Display all clients whose name starts with a given string. Requires web based javascript to delete users with AJAX */
+    router.get('/search/:s', function(req, res){
+        var callbackCount = 0;
+        var context = {};
+        context.jsscripts = ["deleteClient.js","searchClients.js"];
+        var mysql = req.app.get('mysql');
+        getClientsWithNameLike(req, res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('clients', context);
+            }
+        }
+    });
 
     
     return router;

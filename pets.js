@@ -16,7 +16,7 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletePet.js"];
+        context.jsscripts = ["deletePet.js", "searchPets.js"];
         var mysql = req.app.get('mysql');
         getPets(res, mysql, context, complete);
         function complete(){
@@ -63,6 +63,37 @@ module.exports = function(){
             }
         })
     })
+    
+    function getPetsWithNameLike(req, res, mysql, context, complete) {
+      //sanitize the input as well as include the % character
+       var query = "SELECT pets.petID, pets.petName, pets.species, pets.weight, pets.caloricGoal, pets.healthIssue, pets.percentCanned, pets.percentDry FROM pets WHERE pets.petName LIKE " + mysql.pool.escape(req.params.s + '%');
+      console.log(query)
+
+      mysql.pool.query(query, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.pets = results;
+            complete();
+        });
+    }
+    
+    
+    /*Display all pets whose name starts with a given string. Requires web based javascript to delete users with AJAX */
+    router.get('/search/:s', function(req, res){
+        var callbackCount = 0;
+        var context = {};
+        context.jsscripts = ["deletePet.js","searchPets.js"];
+        var mysql = req.app.get('mysql');
+        getPetsWithNameLike(req, res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('pets', context);
+            }
+        }
+    });
 
     
     return router;

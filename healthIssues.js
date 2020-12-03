@@ -16,7 +16,7 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteHealthIssue.js"];
+        context.jsscripts = ["deleteHealthIssue.js", "searchHealthIssues.js"];
         var mysql = req.app.get('mysql');
         getHealthIssues(res, mysql, context, complete);
         function complete(){
@@ -64,6 +64,37 @@ module.exports = function(){
             }
         })
     })
+    
+    function getHealthIssuesWithNameLike(req, res, mysql, context, complete) {
+      //sanitize the input as well as include the % character
+       var query = "SELECT healthIssues.healthIssueID, healthIssues.healthIssue, healthIssues.species, healthIssues.recPercentCanned, healthIssues.recPercentDry FROM healthIssues WHERE healthIssues.healthIssue LIKE " + mysql.pool.escape(req.params.s + '%');
+      console.log(query)
+
+      mysql.pool.query(query, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.healthIssues = results;
+            complete();
+        });
+    }
+    
+    
+    /*Display all pets whose name starts with a given string. Requires web based javascript to delete users with AJAX */
+    router.get('/search/:s', function(req, res){
+        var callbackCount = 0;
+        var context = {};
+        context.jsscripts = ["deleteHealthIssue.js","searchHealthIssues.js"];
+        var mysql = req.app.get('mysql');
+        getHealthIssuesWithNameLike(req, res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('healthIssues', context);
+            }
+        }
+    });
 
     
     return router;
