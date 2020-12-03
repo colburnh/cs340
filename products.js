@@ -2,8 +2,21 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
+
+    function getHealthIssues(res, mysql, context, complete){
+        mysql.pool.query("SELECT healthIssues.healthIssueID, healthIssues.healthIssue FROM healthIssues", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.healthIssues  = results;
+            complete();
+        });
+    }
+    
+    
     function getProducts(res, mysql, context, complete){
-        mysql.pool.query("SELECT products.productID, products.healthIssue, products.forSpecies, products.brandName, products.foodName, products.foodType, products.unit, products.calPerUnit FROM products", function(error, results, fields){
+        mysql.pool.query("SELECT products.productID, healthIssues.healthIssue, products.forSpecies, products.brandName, products.foodName, products.foodType, products.unit, products.calPerUnit FROM products INNER JOIN healthIssues ON products.healthIssue = healthIssues.healthIssueID", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -18,10 +31,11 @@ module.exports = function(){
         var context = {};
         context.jsscripts = ["deleteProduct.js", "searchProducts.js"];
         var mysql = req.app.get('mysql');
+        getHealthIssues(res, mysql, context, complete);
         getProducts(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 2){
                 res.render('products', context);
             }
 
@@ -67,7 +81,7 @@ module.exports = function(){
     
     function getProductsWithNameLike(req, res, mysql, context, complete) {
       //sanitize the input as well as include the % character
-       var query = "SELECT products.productID, products.healthIssue, products.forSpecies, products.brandName, products.foodName, products.foodType, products.unit, products.calPerUnit FROM products WHERE products.brandName LIKE " + mysql.pool.escape(req.params.s + '%');
+       var query = "SELECT products.productID, healthIssues.healthIssue, products.forSpecies, products.brandName, products.foodName, products.foodType, products.unit, products.calPerUnit FROM products INNER JOIN healthIssues ON products.healthIssue = healthIssues.healthIssueID WHERE products.brandName LIKE " + mysql.pool.escape(req.params.s + '%');
       console.log(query)
 
       mysql.pool.query(query, function(error, results, fields){
