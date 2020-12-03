@@ -15,10 +15,14 @@ var handlebars = require('express-handlebars').create({
 app.engine('handlebars', handlebars.engine);
 app.use(bodyParser.urlencoded({extended:true}));
 app.use('/static', express.static('public'));
-app.use('/', express.static('public'));
 app.set('view engine', 'handlebars');
 app.set('port', process.argv[2]);
 app.set('mysql', mysql);
+app.use('/clients', require('./clients.js'));
+app.use('/pets', require('./pets.js'));
+app.use('/products', require('./products.js'));
+app.use('/healthIssues', require('./healthIssues.js'));
+app.use('/', express.static('public'));
 
 
 //home page
@@ -46,34 +50,29 @@ app.get('/rc', function(req, res){
 });
 
 //otc page
-app.get('/otc', function(req, res){
-    res.status(200).render('otc', {
+app.get('/products', function(req, res){
+    res.status(200).render('products', {
     });
 });
 
 //add pet page
-app.get('/pet', function(req, res){
-    res.status(200).render('pet', {
+app.get('/pets', function(req, res){
+    res.status(200).render('pets', {
     });
 });
 
 //add client page
-app.get('/client', function(req, res){
-    res.status(200).render('client', {
+app.get('/clients', function(req, res){
+    res.status(200).render('clients', {
     });
 });
 
 //add health issue page
-app.get('/healthIssue', function(req, res){
-    res.status(200).render('healthIssue', {
+app.get('/healthIssues', function(req, res){
+    res.status(200).render('healthIssues', {
     });
 });
 
-/*
-app.use('/people_certs', require('./people_certs.js'));
-app.use('/people', require('./people.js'));
-app.use('/planets', require('./planets.js'));
-*/
 
 app.use(function(req,res){
   res.status(404);
