@@ -1,0 +1,51 @@
+<body>
+
+<!-- jumbotron to provide info about page -->
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Find out how much your pet should eat</h1>
+    <p class="lead">This page will:</p>
+    <ul>
+    <li> List, add, and delete petProduct relationships  </li>
+    <li> List the  M:M petProduct table (see what pets use what products) </li>
+  </ul>
+  <p class="lead">many pets can use many products.</p>
+  </div>
+</div>
+
+<h3>Add a Pet Product Relationship:</h3>
+<form id="addPetProduct" action="/petProduct" method="post">
+    Select a Pet: <select name="petID"> 
+        {{#each pets}}
+        <option value="{{petID}}">{{petName}}</option>
+        {{/each}}
+    </select><br>
+    Select a Product: <select name="productID"> 
+        {{#each products}}
+        <option value="{{productID}}">{{foodName}}</option>
+        {{/each}}
+    </select><br>
+    <input type="submit" value="Submit">
+ </form>
+<br/>
+
+<h3>Current Pet Product Relationships:</h3>
+<table style="width:500px">
+    <thead>
+        <tr style="border:1px solid black">
+            <th>Pet</th>
+            <th>Product</th>
+            <th>Delete</th>
+        </tr>
+    </thead> 
+    <tbody>
+        {{#each petProduct}} 
+        <tr style="border:1px solid black"> 
+            <td>{{petID}} {{petName}}</td>
+            <td>{{productID}} {{foodName}}</td>
+            <td><button onclick="deletePetProduct({{petID}}, {{productID}})">Delete</button></td>
+        </tr> 
+        {{/each}} 
+    </tbody> 
+</table> 
+</body>

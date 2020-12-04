@@ -36,6 +36,7 @@
             <th>First Name</th> 
             <th>Last Name</th> 
             <th>Delete</th>
+            <th>Update</th>
         </tr>
     </thead> 
     <tbody>
@@ -45,25 +46,7 @@
             <td>{{fname}}</td> 
             <td>{{lname}}</td> 
             <td><button onclick="deleteClient({{clientID}})">Delete</button></td>
-        </tr> 
-        {{/each}} 
-    </tbody> 
-</table> 
-
-
-<h3>ClientPet Table:</h3>
-<table style="width:500px">
-    <thead>
-        <tr style="border:1px solid black">
-            <th>Client ID</th>
-            <th>Pet ID</th>
-        </tr>
-    </thead> 
-    <tbody>
-        {{#each clientPet}} 
-        <tr style="border:1px solid black"> 
-            <td>{{clientID}}</td>
-            <td>{{petID}}</td>
+            <td><a href="/clients/{{clientID}}">Update</a></td>
         </tr> 
         {{/each}} 
     </tbody> 

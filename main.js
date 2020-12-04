@@ -23,6 +23,7 @@ app.use('/pets', require('./pets.js'));
 app.use('/products', require('./products.js'));
 app.use('/healthIssues', require('./healthIssues.js'));
 app.use('/clientPet', require('./clientPet.js'));
+app.use('/petProduct', require('./petProduct.js'));
 app.use('/', express.static('public'));
 
 
@@ -65,6 +66,12 @@ app.get('/healthIssues', function(req, res){
 //client pet relationship page
 app.get('/clientPet', function(req, res){
     res.status(200).render('clientPet', {
+    });
+});
+
+//pet product relationship page
+app.get('/petProduct', function(req, res){
+    res.status(200).render('petProduct', {
     });
 });
 

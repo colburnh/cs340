@@ -13,28 +13,16 @@ module.exports = function(){
         });
     }
     
-     //Function for getting clientPet table. Currently not working.
-    function getClientPet(res, mysql, context, complete){
-        mysql.pool.query("SELECT clientPet.clientID, clientPet.petID FROM clientPet", function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }
-            context.clientPet = results;
-            complete();
-        });
-    }
     
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteClient.js", "searchClients.js"];
+        context.jsscripts = ["deleteClient.js", "searchClients.js", "updateClient.js"];
         var mysql = req.app.get('mysql');
         getClients(res, mysql, context, complete);
-        getClientPet(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 2){
+            if(callbackCount >= 1){
                 res.render('clients', context);
             }
 
@@ -97,7 +85,7 @@ module.exports = function(){
     router.get('/search/:s', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteClient.js","searchClients.js"];
+        context.jsscripts = ["deleteClient.js","searchClients.js", "updateClient.js"];
         var mysql = req.app.get('mysql');
         getClientsWithNameLike(req, res, mysql, context, complete);
         function complete(){
@@ -106,6 +94,57 @@ module.exports = function(){
                 res.render('clients', context);
             }
         }
+    });
+    
+    function getClient(res, mysql, context, clientID, complete){
+        var sql = "SELECT clients.clientID AS clientID, clients.fname, clients.lname FROM clients WHERE clientID = ?";
+        var inserts = [clientID];
+        mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.client = results[0];
+            complete();
+        });
+    }
+    
+    /* Display one client for the specific purpose of updating clients */
+
+    router.get('/:clientID', function(req, res){
+        console.log(req.params.clientID)
+        callbackCount = 0;
+        var context = {};
+        context.jsscripts = ["updateClient.js"];
+        var mysql = req.app.get('mysql');
+        getClient(res, mysql, context, req.params.clientID, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('updateClient', context);
+            }
+
+        }
+    });
+    
+    /* The URI that update data is sent to in order to update a person */
+
+    router.put('/:clientID', function(req, res){
+        var mysql = req.app.get('mysql');
+        console.log(req.body)
+        console.log(req.params.clientID)
+        var sql = "UPDATE clients SET fname = ?, lname = ? WHERE clientID = ?";
+        var inserts = [req.body.fname, req.body.lname, req.params.clientID];
+        sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+            if(error){
+                console.log(error)
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.status(200);
+                res.end();
+            }
+        });
     });
 
     

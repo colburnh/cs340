@@ -2,19 +2,8 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
-    function getClients(res, mysql, context, complete){
-        mysql.pool.query("SELECT clients.clientID AS clientID, clients.fname, clients.lname FROM clients", function(error, results, fields){
-            if(error){
-                res.write(JSON.stringify(error));
-                res.end();
-            }
-            context.clients = results;
-            complete();
-        });
-    }
-    
     function getPets(res, mysql, context, complete){
-        mysql.pool.query("SELECT pets.petID AS petID, pets.petName FROM pets WHERE pets.petID NOT IN (SELECT clientPet.petID FROM clientPet)", function(error, results, fields){
+        mysql.pool.query("SELECT pets.petID AS petID, pets.petName FROM pets", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -24,14 +13,25 @@ module.exports = function(){
         });
     }
     
-     //Function for getting clientPet table.
-    function getClientPet(res, mysql, context, complete){
-        mysql.pool.query("SELECT IFNULL(clientPet.clientID, 'NULL') AS clientID, CONCAT(clients.fname, ' ', clients.lname) AS name, IFNULL(clientPet.petID, 'NULL') AS petID, pets.petName FROM clientPet LEFT JOIN clients ON clients.clientID = clientPet.clientID LEFT JOIN pets ON pets.petID = clientPet.petID ORDER BY clientID ASC, petID ASC", function(error, results, fields){
+    function getProducts(res, mysql, context, complete){
+        mysql.pool.query("SELECT products.productID AS productID, products.foodName FROM products", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            context.clientPet = results;
+            context.products = results;
+            complete();
+        });
+    }
+    
+     //Function for getting clientPet table. Currently not working.
+    function getPetProduct(res, mysql, context, complete){
+        mysql.pool.query("SELECT IFNULL(petProduct.petID, 'NULL') AS petID, pets.petName, IFNULL(petProduct.productID, 'NULL') AS productID, products.foodName FROM petProduct INNER JOIN pets ON pets.petID = petProduct.petID INNER JOIN products ON products.productID = petProduct.productID", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.petProduct = results;
             complete();
         });
     }
@@ -39,15 +39,15 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteClientPet.js"];
+        context.jsscripts = ["deletePetProduct.js"];
         var mysql = req.app.get('mysql');
-        getClients(res, mysql, context, complete);
         getPets(res, mysql, context, complete);
-        getClientPet(res, mysql, context, complete);
+        getProducts(res, mysql, context, complete);
+        getPetProduct(res, mysql, context, complete);
         function complete(){
             callbackCount++;
             if(callbackCount >= 3){
-                res.render('clientPet', context);
+                res.render('petProduct', context);
             }
 
         }
@@ -58,26 +58,27 @@ module.exports = function(){
     router.post('/', function(req, res){
         console.log(req.body)
         var mysql = req.app.get('mysql');
-        var sql = "INSERT INTO clientPet (clientID, petID) VALUES (?,?)";
-        var inserts = [req.body.clientID, req.body.petID];
+        var sql = "INSERT INTO petProduct (petID, productID) VALUES (?,?)";
+        var inserts = [req.body.petID, req.body.productID];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error))
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.redirect('/clientPet');
+                res.redirect('/petProduct');
             }
         });
     });
     
     /* Route to delete a clientPet relationship, simply returns a 202 upon success. Ajax will handle this. */
 
-    router.delete('/:petID', function(req, res){
-        console.log(req.params);
+    router.delete('/petID/:petID/productID/:productID', function(req, res){
+        console.log(req.params.petID)
+        console.log(req.params.petID)
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM clientPet WHERE petID = ?";
-        var inserts = [req.params.petID];
+        var sql = "DELETE FROM petProduct WHERE productID = ? AND petID = ?";
+        var inserts = [req.params.productID, req.params.petID];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 console.log(error)
@@ -89,6 +90,7 @@ module.exports = function(){
             }
         })
     })
+
     
     return router;
 }();
