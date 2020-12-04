@@ -20,7 +20,7 @@
     Caloric Goal: <input type="text" name="caloricGoal"><br>
     Health Issue: <select name="healthIssue"> 
         {{#each healthIssues}}
-        <option value="{{healthIssueID}}">{{healthIssue}}</option>
+        <option value="{{healthIssueID}}">{{healthIssue}} {{species}}</option>
         {{/each}}
     </select><br>
     Percent Canned: <input type="text" name="percentCanned"><br>
