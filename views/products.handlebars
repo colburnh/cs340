@@ -16,7 +16,7 @@
 <form id="addProduct" action="/products" method="post">
     Health Issue: <select name="healthIssue"> 
         {{#each healthIssues}}
-        <option value="{{healthIssueID}}">{{healthIssue}}</option>
+        <option value="{{healthIssueID}}">{{healthIssue}} (for {{species}})</option>
         {{/each}}
     </select><br>
     For Species: <input type="text" name="forSpecies"><br>
@@ -48,6 +48,7 @@
             <th>Food Type</th>
             <th>Unit</th>
             <th>Cal Per Unit</th>
+            <th>Delete</th>
         </tr>
     </thead> 
     <tbody>

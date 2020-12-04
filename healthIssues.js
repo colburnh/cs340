@@ -47,7 +47,7 @@ module.exports = function(){
         });
     });
     
-    /* Route to delete a person, simply returns a 202 upon success. Ajax will handle this. */
+    /* Route to delete a health issue, simply returns a 202 upon success. Ajax will handle this.
 
     router.delete('/:healthIssueID', function(req, res){
         var mysql = req.app.get('mysql');
@@ -64,6 +64,7 @@ module.exports = function(){
             }
         })
     })
+    */
     
     function getHealthIssuesWithNameLike(req, res, mysql, context, complete) {
       //sanitize the input as well as include the % character

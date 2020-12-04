@@ -22,6 +22,7 @@ app.use('/clients', require('./clients.js'));
 app.use('/pets', require('./pets.js'));
 app.use('/products', require('./products.js'));
 app.use('/healthIssues', require('./healthIssues.js'));
+app.use('/clientPet', require('./clientPet.js'));
 app.use('/', express.static('public'));
 
 
@@ -32,44 +33,38 @@ app.get('/', function(req, res){
 });
 
 //home page
-app.get('/home', function(req, res){
-    res.status(200).render('home', {
-    });
-});
+//app.get('/home', function(req, res){
+    //res.status(200).render('home', {
+    //});
+//});
 
-//hills page
-app.get('/hills', function(req, res){
-    res.status(200).render('hills', {
-    });
-});
-
-//rc page
-app.get('/rc', function(req, res){
-    res.status(200).render('rc', {
-    });
-});
-
-//otc page
+//products page
 app.get('/products', function(req, res){
     res.status(200).render('products', {
     });
 });
 
-//add pet page
+//pets page
 app.get('/pets', function(req, res){
     res.status(200).render('pets', {
     });
 });
 
-//add client page
+//client page
 app.get('/clients', function(req, res){
     res.status(200).render('clients', {
     });
 });
 
-//add health issue page
+//health issue page
 app.get('/healthIssues', function(req, res){
     res.status(200).render('healthIssues', {
+    });
+});
+
+//client pet relationship page
+app.get('/clientPet', function(req, res){
+    res.status(200).render('clientPet', {
     });
 });
 

@@ -14,7 +14,7 @@ module.exports = function(){
     }
     
     function getPets(res, mysql, context, complete){
-        mysql.pool.query("SELECT pets.petID, pets.petName, pets.species, pets.weight, pets.caloricGoal, healthIssues.healthIssue AS healthIssue, pets.percentCanned, pets.percentDry FROM pets INNER JOIN healthIssues ON pets.healthIssue = healthIssues.healthIssueID", function(error, results, fields){
+        mysql.pool.query("SELECT pets.petID, pets.petName, pets.species, pets.weight, pets.caloricGoal, IFNULL(healthIssues.healthIssue, 'NULL') AS healthIssue, pets.percentCanned, pets.percentDry FROM pets LEFT JOIN healthIssues ON pets.healthIssue = healthIssues.healthIssueID", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();

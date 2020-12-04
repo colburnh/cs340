@@ -4,7 +4,7 @@ module.exports = function(){
 
 
     function getHealthIssues(res, mysql, context, complete){
-        mysql.pool.query("SELECT healthIssues.healthIssueID, healthIssues.healthIssue FROM healthIssues", function(error, results, fields){
+        mysql.pool.query("SELECT healthIssues.healthIssueID, healthIssues.healthIssue, healthIssues.species FROM healthIssues", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
