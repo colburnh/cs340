@@ -2,8 +2,19 @@ module.exports = function(){
     var express = require('express');
     var router = express.Router();
 
+    function getHealthIssues(res, mysql, context, complete){
+        mysql.pool.query("SELECT healthIssues.healthIssueID, healthIssues.healthIssue, healthIssues.species FROM healthIssues", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.healthIssues  = results;
+            complete();
+        });
+    }
+    
     function getPets(res, mysql, context, complete){
-        mysql.pool.query("SELECT pets.petID, pets.petName, pets.species, pets.weight, pets.caloricGoal, pets.healthIssue, pets.percentCanned, pets.percentDry FROM pets", function(error, results, fields){
+        mysql.pool.query("SELECT pets.petID, pets.petName, pets.species, pets.weight, pets.caloricGoal, IFNULL(healthIssues.healthIssue, 'NULL') AS healthIssue, pets.percentCanned, pets.percentDry FROM pets LEFT JOIN healthIssues ON pets.healthIssue = healthIssues.healthIssueID", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -16,12 +27,13 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deletePet.js"];
+        context.jsscripts = ["deletePet.js", "searchPets.js"];
         var mysql = req.app.get('mysql');
         getPets(res, mysql, context, complete);
+        getHealthIssues(res, mysql, context, complete);
         function complete(){
             callbackCount++;
-            if(callbackCount >= 1){
+            if(callbackCount >= 2){
                 res.render('pets', context);
             }
 
@@ -63,6 +75,37 @@ module.exports = function(){
             }
         })
     })
+    
+    function getPetsWithNameLike(req, res, mysql, context, complete) {
+      //sanitize the input as well as include the % character
+       var query = "SELECT pets.petID, pets.petName, pets.species, pets.weight, pets.caloricGoal, healthIssues.healthIssue AS healthIssue, pets.percentCanned, pets.percentDry FROM pets INNER JOIN healthIssues ON pets.healthIssue = healthIssues.healthIssueID WHERE pets.petName LIKE " + mysql.pool.escape(req.params.s + '%');
+      console.log(query)
+
+      mysql.pool.query(query, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.pets = results;
+            complete();
+        });
+    }
+    
+    
+    /*Display all pets whose name starts with a given string. Requires web based javascript to delete users with AJAX */
+    router.get('/search/:s', function(req, res){
+        var callbackCount = 0;
+        var context = {};
+        context.jsscripts = ["deletePet.js","searchPets.js"];
+        var mysql = req.app.get('mysql');
+        getPetsWithNameLike(req, res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('pets', context);
+            }
+        }
+    });
 
     
     return router;

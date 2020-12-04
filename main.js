@@ -15,10 +15,15 @@ var handlebars = require('express-handlebars').create({
 app.engine('handlebars', handlebars.engine);
 app.use(bodyParser.urlencoded({extended:true}));
 app.use('/static', express.static('public'));
-app.use('/', express.static('public'));
 app.set('view engine', 'handlebars');
 app.set('port', process.argv[2]);
 app.set('mysql', mysql);
+app.use('/clients', require('./clients.js'));
+app.use('/pets', require('./pets.js'));
+app.use('/products', require('./products.js'));
+app.use('/healthIssues', require('./healthIssues.js'));
+app.use('/clientPet', require('./clientPet.js'));
+app.use('/', express.static('public'));
 
 
 //home page
@@ -28,52 +33,41 @@ app.get('/', function(req, res){
 });
 
 //home page
-app.get('/home', function(req, res){
-    res.status(200).render('home', {
+//app.get('/home', function(req, res){
+    //res.status(200).render('home', {
+    //});
+//});
+
+//products page
+app.get('/products', function(req, res){
+    res.status(200).render('products', {
     });
 });
 
-//hills page
-app.get('/hills', function(req, res){
-    res.status(200).render('hills', {
+//pets page
+app.get('/pets', function(req, res){
+    res.status(200).render('pets', {
     });
 });
 
-//rc page
-app.get('/rc', function(req, res){
-    res.status(200).render('rc', {
+//client page
+app.get('/clients', function(req, res){
+    res.status(200).render('clients', {
     });
 });
 
-//otc page
-app.get('/otc', function(req, res){
-    res.status(200).render('otc', {
+//health issue page
+app.get('/healthIssues', function(req, res){
+    res.status(200).render('healthIssues', {
     });
 });
 
-//add pet page
-app.get('/pet', function(req, res){
-    res.status(200).render('pet', {
+//client pet relationship page
+app.get('/clientPet', function(req, res){
+    res.status(200).render('clientPet', {
     });
 });
 
-//add client page
-app.get('/client', function(req, res){
-    res.status(200).render('client', {
-    });
-});
-
-//add health issue page
-app.get('/healthIssue', function(req, res){
-    res.status(200).render('healthIssue', {
-    });
-});
-
-/*
-app.use('/people_certs', require('./people_certs.js'));
-app.use('/people', require('./people.js'));
-app.use('/planets', require('./planets.js'));
-*/
 
 app.use(function(req,res){
   res.status(404);
