@@ -6,8 +6,7 @@
     <h1 class="display-4">Find out how much your pet should eat</h1>
     <p class="lead">Enter your pet's details and select their Hills food</p>
     <ul>
-    <li> List, add, and delete health issues (which will also update the petProduct table (FK)  </li>
-    <li> Update a health issue for a species</li>
+    <li> List and add health issues (which will also update the petProduct table)  </li>
     <li> Search by health issue </li>
   </ul>
   </div>
@@ -17,7 +16,10 @@
 <h3>Add Health Issues:</h3>
 <form id="addHealthIssue" action="/healthIssues" method="post">
     Health Issue: <input type="text" name="healthIssue"><br>
-    Species: <input type="text" name="species"><br>
+    Species: <input type="radio" name="species" value="Cat">
+    <label for="Cat">Cat</label>
+    <input type="radio" name="species" value="Dog">
+    <label for="Dog">Dog</label><br>
     Recommended % Canned: <input type="decimal" name="recPercentCanned"><br>
     Recommended % Dry: <input type="decimal" name="recPercentDry"><br>
     <input type="submit" value="Submit">
@@ -35,7 +37,6 @@
 <table style="width:700px">
     <thead>
         <tr style="border:1px solid black">
-            <th>Health Issue ID</th>
             <th>Health Issue</th> 
             <th>For Species</th> 
             <th>Recommended % Canned</th> 
@@ -45,7 +46,6 @@
     <tbody>
         {{#each healthIssues}} 
         <tr style="border:1px solid black"> 
-            <td>{{healthIssueID}}</td>
             <td>{{healthIssue}}</td> 
             <td>{{species}}</td> 
             <td>{{recPercentCanned}}</td> 

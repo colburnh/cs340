@@ -26,7 +26,7 @@ module.exports = function(){
     
      //Function for getting clientPet table.
     function getClientPet(res, mysql, context, complete){
-        mysql.pool.query("SELECT IFNULL(clientPet.clientID, 'NULL') AS clientID, CONCAT(clients.fname, ' ', clients.lname) AS name, IFNULL(clientPet.petID, 'NULL') AS petID, pets.petName FROM clientPet LEFT JOIN clients ON clients.clientID = clientPet.clientID LEFT JOIN pets ON pets.petID = clientPet.petID ORDER BY clientID ASC, petID ASC", function(error, results, fields){
+        mysql.pool.query("SELECT clientPet.clientID AS clientID, CONCAT(IFNULL(clients.fname, 'NULL'), ' ', IFNULL(clients.lname, '')) AS name, IFNULL(clientPet.petID, '45') AS petID, IFNULL(pets.petName, 'NULL') AS petName FROM clientPet LEFT JOIN clients ON clients.clientID = clientPet.clientID LEFT JOIN pets ON pets.petID = clientPet.petID ORDER BY clientID ASC, petID ASC", function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
                 res.end();
@@ -76,7 +76,7 @@ module.exports = function(){
     router.delete('/:petID', function(req, res){
         console.log(req.params);
         var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM clientPet WHERE petID = ?";
+        var sql = "DELETE FROM clientPet WHERE IFNULL(petID, '45') = ?";
         var inserts = [req.params.petID];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){

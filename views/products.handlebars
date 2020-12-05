@@ -19,7 +19,10 @@
         <option value="{{healthIssueID}}">{{healthIssue}} (for {{species}})</option>
         {{/each}}
     </select><br>
-    For Species: <input type="text" name="forSpecies"><br>
+    For Species: <input type="radio" name="forSpecies" value="Cat">
+    <label for="Cat">Cat</label>
+    <input type="radio" name="forSpecies" value="Dog">
+    <label for="Dog">Dog</label><br>
     Brand Name: <input type="text" name="brandName"><br>
     Food Name: <input type="text" name="foodName"><br>
     Food Type: <input type="text" name="foodType"><br>
@@ -40,7 +43,6 @@
 <table style="width:900px">
     <thead>
         <tr style="border:1px solid black">
-            <th>Product ID</th>
             <th>Health Issue</th>
             <th>For Species</th> 
             <th>Brand Name</th> 
@@ -54,7 +56,6 @@
     <tbody>
         {{#each products}} 
         <tr style="border:1px solid black"> 
-            <td>{{productID}}</td>
             <td>{{healthIssue}}</td>
             <td>{{forSpecies}}</td> 
             <td>{{brandName}}</td> 

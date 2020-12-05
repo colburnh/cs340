@@ -6,10 +6,10 @@
     <h1 class="display-4">Find out how much your pet should eat</h1>
     <p class="lead">This page will:</p>
     <ul>
-    <li> List, add, and delete petProduct relationships  </li>
     <li> List the  M:M petProduct table (see what pets use what products) </li>
+    <li> Add and delete petProduct relationships  </li>
   </ul>
-  <p class="lead">many pets can use many products.</p>
+  <p class="lead">Many pets can use many products. If you delete a pet or a product on the other webpages, any entries with either that pet or product will be deleted in the petProduct table.</p>
   </div>
 </div>
 
@@ -30,7 +30,7 @@
 <br/>
 
 <h3>Current Pet Product Relationships:</h3>
-<table style="width:500px">
+<table style="width:400px">
     <thead>
         <tr style="border:1px solid black">
             <th>Pet</th>
@@ -41,8 +41,8 @@
     <tbody>
         {{#each petProduct}} 
         <tr style="border:1px solid black"> 
-            <td>{{petID}} {{petName}}</td>
-            <td>{{productID}} {{foodName}}</td>
+            <td>{{petName}}</td>
+            <td>{{foodName}}</td>
             <td><button onclick="deletePetProduct({{petID}}, {{productID}})">Delete</button></td>
         </tr> 
         {{/each}} 

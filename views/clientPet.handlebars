@@ -6,8 +6,8 @@
     <h1 class="display-4">Find out how much your pet should eat</h1>
     <p class="lead">This page will:</p>
     <ul>
-    <li> List, add, and delete clientPet relationships  </li>
-    <li> List the  1:M clientPet table (see what client owns what pets) </li>
+    <li> List the 1:M clientPet table (see what client owns what pets) </li>
+    <li>add and delete clientPet relationships  </li>
   </ul>
   <p class="lead">One client can own many pets, but one pet can owned by only one client. As such, if all pets currently have an owner, you won't be able to add an entry to the table.</p>
   </div>
@@ -41,8 +41,8 @@
     <tbody>
         {{#each clientPet}} 
         <tr style="border:1px solid black"> 
-            <td>{{clientID}} {{name}}</td>
-            <td>{{petID}} {{petName}}</td>
+            <td>{{name}}</td>
+            <td>{{petName}}</td>
             <td><button onclick="deleteClientPet({{petID}})">Delete</button></td>
         </tr> 
         {{/each}} 

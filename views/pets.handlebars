@@ -15,7 +15,10 @@
 <h3>Add Pet:</h3>
 <form id="addPet" action="/pets" method="post">
     Pet Name: <input type="text" name="petName"><br>
-    Species: <input type="text" name="species"><br>
+    Species: <input type="radio" name="species" value="Cat">
+    <label for="Cat">Cat</label>
+    <input type="radio" name="species" value="Dog">
+    <label for="Dog">Dog</label><br>
     Weight: <input type="text" name="weight"><br>
     Caloric Goal: <input type="text" name="caloricGoal"><br>
     Health Issue: <select name="healthIssue"> 
@@ -41,7 +44,6 @@
 <table style="width:1000px">
     <thead>
         <tr style="border:1px solid black">
-            <th>Pet ID</th>
             <th>Pet Name</th> 
             <th>Species</th> 
             <th>Weight</th>
@@ -55,7 +57,6 @@
     <tbody>
         {{#each pets}} 
         <tr style="border:1px solid black"> 
-            <td>{{petID}}</td>
             <td>{{petName}}</td> 
             <td>{{species}}</td> 
             <td>{{weight}}</td>
