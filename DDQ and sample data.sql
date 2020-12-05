@@ -24,11 +24,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `clients`
+-- Table structure for table `Clients`
 --
 
-DROP TABLE IF EXISTS `clients`;
-CREATE TABLE `clients` (
+DROP TABLE IF EXISTS `Clients`;
+CREATE TABLE `Clients` (
   `clientID` int(11) NOT NULL AUTO_INCREMENT,
   `fname` varchar(255) NOT NULL,
   `lname` varchar(255) NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE `clients` (
 -- Dumping data for table `clients`
 --
 
-INSERT INTO `clients` (`fname`, `lname`) VALUES
+INSERT INTO `Clients` (`fname`, `lname`) VALUES
 ('John', 'Smith'),
 ('Terry', 'Cruise'),
 ('Jerry', 'Heinsburger'),
@@ -49,11 +49,11 @@ INSERT INTO `clients` (`fname`, `lname`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `healthIssues`
+-- Table structure for table `HealthIssues`
 --
 
-DROP TABLE IF EXISTS `healthIssues`;
-CREATE TABLE `healthIssues` (
+DROP TABLE IF EXISTS `HealthIssues`;
+CREATE TABLE `HealthIssues` (
   `healthIssueID` int(11) NOT NULL AUTO_INCREMENT,
   `healthIssue` varchar(255) NOT NULL,
   `species` varchar(255) NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE `healthIssues` (
 -- Dumping data for table `healthIssues`
 --
 
-INSERT INTO `healthIssues` (`healthIssue`, `species`, `recPercentCanned`, `recPercentDry`) VALUES
+INSERT INTO `HealthIssues` (`healthIssue`, `species`, `recPercentCanned`, `recPercentDry`) VALUES
 ('Hairballs', 'Cat', '0.80', '0.20'),
 ('Overweight', 'Dog', '0.20', '0.80'),
 ('Underweight', 'Dog', '0.50', '0.50');
@@ -75,11 +75,11 @@ INSERT INTO `healthIssues` (`healthIssue`, `species`, `recPercentCanned`, `recPe
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pets`
+-- Table structure for table `Pets`
 --
 
-DROP TABLE IF EXISTS `pets`;
-CREATE TABLE `pets` (
+DROP TABLE IF EXISTS `Pets`;
+CREATE TABLE `Pets` (
   `petID` int(11) NOT NULL AUTO_INCREMENT,
   `petName` varchar(255) NOT NULL,
   `species` varchar(255) NOT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE `pets` (
 -- Dumping data for table `pets`
 --
 
-INSERT INTO `pets` (`petName`, `species`, `weight`, `caloricGoal`, `healthIssue`, `percentCanned`, `percentDry`) VALUES
+INSERT INTO `Pets` (`petName`, `species`, `weight`, `caloricGoal`, `healthIssue`, `percentCanned`, `percentDry`) VALUES
 ('Sir.George', 'Dog', '30.10', 364, 'Overweight', '0.20', '0.80'),
 ('Momo', 'Dog', '15.00', 520, 'Underweight', '0.50', '0.50'),
 ('Lucy', 'Cat', '5.00', 243, 'Underweight', '0.70', '0.30'),
@@ -105,11 +105,11 @@ INSERT INTO `pets` (`petName`, `species`, `weight`, `caloricGoal`, `healthIssue`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Table structure for table `Products`
 --
 
-DROP TABLE IF EXISTS `products`;
-CREATE TABLE `products` (
+DROP TABLE IF EXISTS `Products`;
+CREATE TABLE `Products` (
   `productID` int(11) NOT NULL AUTO_INCREMENT,
   `healthIssue` varchar(255) NOT NULL,
   `brandName` varchar(255) NOT NULL,
@@ -125,7 +125,7 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`healthIssue`, `brandName`, `forSpecies`, `foodName`, `foodType`, `unit`, `calPerUnit`) VALUES
+INSERT INTO `Products` (`healthIssue`, `brandName`, `forSpecies`, `foodName`, `foodType`, `unit`, `calPerUnit`) VALUES
 ('Hairballs', 'Hill\'s feline', 'Cat', 'Hairball Relief Feline Chow', 'canned', 'can', '70.10'),
 ('Overweight', 'Royal Canin canine', 'Dog', 'Low Cal Canine Chow', 'dry', 'cup', '30.75'),
 ('Underweight', 'Royal Canin feline', 'Cat', 'Low Cal Feline Food', 'dry', 'cup', '40.00');
@@ -134,11 +134,11 @@ INSERT INTO `products` (`healthIssue`, `brandName`, `forSpecies`, `foodName`, `f
 -- --------------------------------------------------------
 
 --
--- Table structure for table `clientPet`
+-- Table structure for table `ClientPet`
 --
 
-DROP TABLE IF EXISTS `clientPet`;
-CREATE TABLE `clientPet` (
+DROP TABLE IF EXISTS `ClientPet`;
+CREATE TABLE `ClientPet` (
   `clientID` int(11) DEFAULT NULL,
   `petID` int(11) DEFAULT NULL,
   PRIMARY KEY (`clientID`,`petID`),
@@ -150,7 +150,7 @@ CREATE TABLE `clientPet` (
 -- Dumping data for table `clientPet`
 --
 
-INSERT INTO `clientPet` (`clientID`, `petID`) VALUES
+INSERT INTO `ClientPet` (`clientID`, `petID`) VALUES
 (1, 1),
 (1, 3),
 (2, 2),
