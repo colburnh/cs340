@@ -46,25 +46,7 @@ module.exports = function(){
             }
         });
     });
-    
-    /* Route to delete a health issue, simply returns a 202 upon success. Ajax will handle this.
 
-    router.delete('/:healthIssueID', function(req, res){
-        var mysql = req.app.get('mysql');
-        var sql = "DELETE FROM healthIssues WHERE healthIssueID = ?";
-        var inserts = [req.params.healthIssueID];
-        sql = mysql.pool.query(sql, inserts, function(error, results, fields){
-            if(error){
-                console.log(error)
-                res.write(JSON.stringify(error));
-                res.status(400);
-                res.end();
-            }else{
-                res.status(202).end();
-            }
-        })
-    })
-    */
     
     function getHealthIssuesWithNameLike(req, res, mysql, context, complete) {
       //sanitize the input as well as include the % character
